@@ -1,0 +1,108 @@
+@import 'https://fonts.googleapis.com/css?family=Shrikhand|Yantramanav';
+
+* {
+    font-family: 'Shrikhand'
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-weight: lighter;
+}
+
+h2 {
+    font-weight: lighter;
+}
+
+.NBAbanner {
+    height: 33vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-image: url(./images/basketball-rims-header.jpg);
+    background-size: cover;
+}
+
+/*#decor1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    max-inline-size: 5%;
+}
+*/
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: row;
+    margin-left: 15%;
+    margin-top: 3%;
+    background-color: midnightblue;
+    width: 70%;
+    height: 50vh;
+    border-radius: 20%;
+}
+
+#questionTitle {
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-left: 100px;
+    margin-top: 150px;
+    margin-right: 100px;
+    
+}
+
+
+.answerButtons {
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    color:aliceblue;
+    margin: 5% 5% 5% 20%;
+    gap: 40px;
+}
+
+.answerBtn {
+    background-color: aliceblue;
+    color: black;
+    font-weight: lighter;
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 5px;
+    
+}
+
+.answerBtn:hover {
+    background-color: greenyellow;
+}
+
+#go {
+
+}
+
+#go:hover {
+    background-color: green;
+}
+
+.timer {
+    text-align: center;
+    color: darkblue;
+}
+
+
+#timeLeft {
+    color: crimson;
+}
+
+.hide {
+    display: none;
+}
