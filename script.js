@@ -90,15 +90,15 @@ startBtn.addEventListener("click", function (){
   if(gameStarted){
     return;
   }
-  randomQuestion = questionList[Math.floor(Math.random()*questionList.length)]
+  //initially i tried a loop here, but tutor helped me to understand indexing. there was no need for the loop because the individual lines writing text.content write populate their corresponding elements. 
+  var randomQuestionIndex = [Math.floor(Math.random()*questionList.length)]
   console.log(questionList.length);
   console.log(randomQuestion);
-    for (i=0; i < questionList.length; i++)
-    questionBox.textContent = questionList [i][0];
-    answerA.textContent = [i][i];
-    answerB.textContent = [i][1];
-    answerC.textContent = [i][2];
-    answerD.textContent = [i][3];
+    questionBox.textContent = questionList[randomQuestionIndex][0];
+    answerA.textContent = questionList[randomQuestionIndex][1];
+    answerB.textContent = questionList[randomQuestionIndex][2];
+    answerC.textContent = questionList[randomQuestionIndex][3];
+    answerD.textContent = questionList[randomQuestionIndex][4];
 
   //nice! randomizer is working and selecting a random question from the question bank. 
   //TODO: display an initial random question upon game commencement. 
