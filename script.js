@@ -43,6 +43,7 @@
   var questionCorrect = [questionBank1[2], questionBank2[4], questionBank3[4], questionBank4[2], questionBank5[4], questionBank6[2], questionBank7[3], questionBank8[2], questionBank9[4], questionBank10[3]]
   var randomQuestion="";
   const timeLeftGlobal = 150;
+  var currentScore = 0;
 //     question: "What famous NBA player went by the name, The Admiral?",
 //     answers: [
 //       {text: "David Robinson", correct: true},
@@ -73,6 +74,7 @@ var answerC = document.getElementById ('option3');
 var answerD = document.getElementById ('option4');
 //this var would be to ensure that the user can't click start once the game has started, but isn't necessary because I hide the button upon start. 
 var gameStarted = false;
+var resetBtn = document.getElementById ('reset')
 //const goButton = document.getElementById('go');
 //confused about my start button. seems to need 2 separate variables but not sure why. 
 startBtn.addEventListener('click', hideButton);
@@ -87,9 +89,9 @@ startBtn.addEventListener('click', countdown);
 
 
 //this function might be redundant because my button dissapears anyways, but I wanted to practice it. 
-function resetTime() {
-    timeRemain.textContent = timeLeftGlobal;
-  } 
+// function resetTime() {
+//     timeRemain.textContent = timeLeftGlobal;
+//   } 
 
 
 startBtn.addEventListener("click", function startGame(){
@@ -98,8 +100,10 @@ startBtn.addEventListener("click", function startGame(){
   }
   //initially i tried a loop here, but tutor helped me to understand indexing. there was no need for the loop because the individual lines writing text.content write populate their corresponding elements. 
   var randomQuestionIndex = [Math.floor(Math.random()*questionList.length)]
+  questionNumber = 0;
   console.log(questionList.length);
   console.log(randomQuestion);
+  //nextQuestion();
     questionBox.textContent = questionList[randomQuestionIndex][0];
     answerA.textContent = questionList[randomQuestionIndex][1];
     answerB.textContent = questionList[randomQuestionIndex][2];
@@ -109,23 +113,61 @@ startBtn.addEventListener("click", function startGame(){
   //nice! randomizer is working and selecting a random question from the question bank. 
   //TODO: display an initial random question upon game commencement. 
   //questionBox.textContent = randomQuestion;
-  document.getElementById('reset').addEventListener('click', startGame);
-  resetTime();                                                                 
+  
+
+  resetBtn.addEventListener('click', startGame);                                                             
+  resetBtn.addEventListener('click',)                           
   //this is funny; I got the reset button to work, but it's really only functioning as another start game button. how do i get it to reset the timer + score as well.
 }
 )
 
-// answerA.addEventListener("click", playerAnswer);
-// answerB.addEventListener("click", playerAnswer);
-// answerC.addEventListener("click", playerAnswer);
-// answerD.addEventListener("click", playerAnswer);
+/*
+function nextQuestion() {
+  continueQuestions(randomQuestionIndex[questionNumber])
+}
+
+function continueQuestions(questionList) {
+  questionBox.textContent = questionList.questionList;
+}
+*/
+
+/*function correctAnswer(event){
+  var playerChoice = e.target.textContent;
+  if(questionBank1[2] === playerChoice){
+    score++;
+    index++;
+    questionList(index);
+  } else if (index > 10){
+    gameStop();
+  }
+  else{
+    index++;
+    questionList(index);
+  }
+}
+*/
+
+//event listeners for the check answer event 
+answerA.addEventListener("click", function(event){
+  correctAnswer(event)
+  console.log("button working");
+});
+answerB.addEventListener("click", function(event){
+  correctAnswer(event)
+});
+answerC.addEventListener("click", function(event){
+  correctAnswer(event)
+});
+answerD.addEventListener("click", function(event){
+  correctAnswer(event)
+});
 //trying to call a reset time function separately; getting confused whether i need to make timeLeft a global or local variable.
 
 
 function countdown() {
   
   var timeLeft = 150;
-  var timeInterval = setInterval(function () {
+  const timeInterval = setInterval(function () {
 
     if (timeLeft > 1) {
 
@@ -143,7 +185,7 @@ function countdown() {
       clearInterval(timeInterval);
       displayMessage();
     }
-  }, 1000);
+  }, 1000);   
 }
 
 
@@ -175,6 +217,9 @@ function hideButton() {
     console.log("neat trick. taking display:none from css can hide a button once function has been executed")
 }
 
+function gameStop() {
+  window.location.reload;
+}
 /*
 
 function next {
