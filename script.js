@@ -41,7 +41,8 @@
   var questionBank10 = ["What university did former NBA star Allen Iverson attend?", "Duke", "USC", "Georgetown", "UCONN"]
   var questionList = [questionBank1, questionBank2, questionBank3, questionBank4, questionBank5, questionBank6, questionBank7, questionBank8, questionBank9, questionBank10]
   var questionCorrect = [questionBank1[2], questionBank2[4], questionBank3[4], questionBank4[2], questionBank5[4], questionBank6[2], questionBank7[3], questionBank8[2], questionBank9[4], questionBank10[3]]
-  
+  var randomQuestion="";
+  const timeLeftGlobal = 150;
 //     question: "What famous NBA player went by the name, The Admiral?",
 //     answers: [
 //       {text: "David Robinson", correct: true},
@@ -49,7 +50,6 @@
 //     ]
 //   }
 // 
-var randomQuestion="";
 // var answerBank = ["David Robinson", "Cuttino Mobley", "Kevin Garnett", "Dirk Nowitzki", 
 // "100", "81", "110", "94", 
 // "Slovenia", "Lithuania", "Croatia", "Poland", 
@@ -64,7 +64,8 @@ console.log(questionBank1.indexOf("David Robinson"));
 console.log(questionBank2.indexOf("Kobe Bryant"));
 var questionBox = document.getElementById ('questionTitle')
 var startBtn = document.getElementById("go");
-var resetBtn = document.querySelector("reset");
+//trouble getting the reset button to work. I wonder if I need to simply tie it to a start game function and use it as a pseudo start button?
+//var resetBtn = document.querySelector("reset");
 var timeRemain = document.getElementById('timeRemaining');
 var answerA = document.getElementById ('option1');
 var answerB = document.getElementById ('option2');
@@ -74,8 +75,8 @@ var answerD = document.getElementById ('option4');
 var gameStarted = false;
 //const goButton = document.getElementById('go');
 //confused about my start button. seems to need 2 separate variables but not sure why. 
-startBtn.addEventListener('click', hideButton)
-startBtn.addEventListener('click', countdown)
+startBtn.addEventListener('click', hideButton);
+startBtn.addEventListener('click', countdown);
 //attempted to create function to reset timer to 0 on reset button but will have to get back to this later. 
 // resetBtn.addEventListener('click', function (){
 //   currentScore=0;
@@ -86,7 +87,12 @@ startBtn.addEventListener('click', countdown)
 
 
 //this function might be redundant because my button dissapears anyways, but I wanted to practice it. 
-startBtn.addEventListener("click", function (){
+function resetTime() {
+    timeRemain.textContent = timeLeftGlobal;
+  } 
+
+
+startBtn.addEventListener("click", function startGame(){
   if(gameStarted){
     return;
   }
@@ -103,7 +109,9 @@ startBtn.addEventListener("click", function (){
   //nice! randomizer is working and selecting a random question from the question bank. 
   //TODO: display an initial random question upon game commencement. 
   //questionBox.textContent = randomQuestion;
-  
+  document.getElementById('reset').addEventListener('click', startGame);
+  resetTime();                                                                 
+  //this is funny; I got the reset button to work, but it's really only functioning as another start game button. how do i get it to reset the timer + score as well.
 }
 )
 
@@ -111,10 +119,12 @@ startBtn.addEventListener("click", function (){
 // answerB.addEventListener("click", playerAnswer);
 // answerC.addEventListener("click", playerAnswer);
 // answerD.addEventListener("click", playerAnswer);
+//trying to call a reset time function separately; getting confused whether i need to make timeLeft a global or local variable.
+
 
 function countdown() {
+  
   var timeLeft = 150;
-
   var timeInterval = setInterval(function () {
 
     if (timeLeft > 1) {
