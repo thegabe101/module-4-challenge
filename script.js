@@ -1,3 +1,9 @@
+//TODO: create query selectors for elements that will be grabbed. 
+//these include: next button, reset button, time left span, word display, and start button. 
+//TODO: wrap most of game in a function that executes upon click start. 
+//TODO: Make question 1 pop up upon click start, options pop up upon click start.
+//TODO: Make options and question cycle upon click next.
+
 //initial questions --
 //create a randomizer so that the quiz is different every time? probably not 
 //starting point? 
@@ -6,10 +12,40 @@
 //could create one div with h1 and four buttons with display none (only first display as soon as quiz is started)
 //as soon as one is answered you change all the 
 //going to start by adding a timer and some obvious global variables 
-
-const goButton = document.getElementById('go');
-
+var startBtn = document.getElementById("go");
+var resetBtn = document.querySelector("reset");
 var timeRemain = document.getElementById('timeRemaining');
+//this var would be to ensure that the user can't click start once the game has started, but isn't necessary because I hide the button upon start. 
+var gameStarted = false;
+const questions = [
+  {
+    question: "What famous NBA player went by the name, The Admiral?",
+    answers: [
+      {text: "David Robinson", correct: true},
+      {text: "Tim Duncan", correct: false}
+    ]
+  }
+]
+//const goButton = document.getElementById('go');
+//confused about my start button. seems to need 2 separate variables but not sure why. 
+startBtn.addEventListener('click', hideButton)
+startBtn.addEventListener('click', countdown)
+resetBtn.addEventListener('click', function (){
+  currentScore=0;
+  clearInterval(timeInterval);
+  currentScore.textContent=0;
+})
+//need to create span for current score somewhere in HTML
+
+
+//this function might be redundant because my button dissapears anyways, but I wanted to practice it. 
+startBtn.addEventListener("click", function (){
+  if(gameStarted){
+    return;
+  }
+}
+)
+
 
 function countdown() {
   var timeLeft = 150;
@@ -57,13 +93,10 @@ setTime();
 //big question with the timer is: how to subtract 10 seconds when a question is wrong? 
 */
 
-goButton.addEventListener('click', beginTrivia)
-goButton.addEventListener('click', countdown)
-    
-
-function beginTrivia() {
+//this function hides the start button upon click. was having trouble wrapping it into main function, so I capitulated to putting it down here. 
+function hideButton() {
     console.log("button has been clicked")
-    goButton.classList.add('hide')
+    startBtn.classList.add('hide')
     console.log("neat trick. taking display:none from css can hide a button once function has been executed")
 }
 

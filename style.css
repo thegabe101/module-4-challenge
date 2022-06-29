@@ -43,13 +43,17 @@ h2 {
 
 .mainContainer {
     display: flex;
-    flex-direction: row;
     margin-left: 15%;
     margin-top: 3%;
     background-color: midnightblue;
     width: 70%;
     height: 50vh;
     border-radius: 20%;
+}
+
+#questionBox {
+    justify-content: center;
+    align-items: center;
 }
 
 #questionTitle {
@@ -61,7 +65,6 @@ h2 {
     margin-right: 100px;
     
 }
-
 
 .answerButtons {
     display: grid;
@@ -86,10 +89,20 @@ h2 {
 }
 
 #go {
+    margin-left: 3vh;
+    font-size: x-large;
+}
+
+#reset {
+    font-size: x-large;
 
 }
 
 #go:hover {
+    background-color: green;
+}
+
+#reset:hover {
     background-color: green;
 }
 
@@ -106,3 +119,10 @@ h2 {
 .hide {
     display: none;
 }
+
+#scoreBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+

@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
+    <!--banner looks good, make sure it's not too large-->
     <div class="NBAbanner">
       <header>
         <h1>
@@ -19,22 +20,34 @@
           />
         </h1>
         <h2>Test your knowledge of the NBA!</h2>
+        <div>
+          <button id="go">Check ball!</button>
+          <button id="reset">Restart Trivia</button>
+        </div>
       </header>
+      <!--Need to add game start button into banner-->
+      <!--make sure button dissapears upon click. Need to have it reappear once game is done running-->
     </div>
-    <main class="container">
+    <main>
       <section class="mainContainer">
-        <h1 id="questionTitle">Question Here</h1>
+        <div id="questionBox><h1 id="questionTitle">Question Here</h1>
         <div class="answerButtons">
           <button class="answerBtn" id="option1">Answer A</button>
           <button class="answerBtn" id="option2">Answer B</button>
           <button class="answerBtn" id="option3">Answer C</button>
           <button class="answerBtn" id="option4">Answer D</button>
+          </div>
         </div>
-        <button id="go">Go</button>
       </section>
-      <div class="timer">
-        <h2>Time remaining:<span id="timeRemaining"> Time Left</span></h2>
-      </div>
+      <footer id="scoreBar">
+        <div class="timer">
+          <h2>Time remaining:<span id="timeRemaining"> Time Left</span></h2>
+        </div>
+        <div>
+          <h2>Current Score: <span id="currentScore"></span></h2>
+        </div>
+      </footer>
+      <!--need to add game reset button into banner-->
     </main>
     <script src="script.js"></script>
   </body>
