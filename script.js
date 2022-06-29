@@ -29,8 +29,6 @@
 // questionBank.indexOf(0)
 // // }
 //   {
-  var questionList = [questionBank1, questionBank2, questionBank3, questionBank4, questionBank5, questionBank6, questionBank7, questionBank8, questionBank9, questionBank10]
-  var questionCorrect = [questionBank1[2], questionBank2[4], questionBank3[4], questionBank4[2], questionBank5[4], questionBank6[2], questionBank7[3], questionBank8[2], questionBank9[4], questionBank10[3]]
   var questionBank1 = ["What famous NBA player went by the name, The Admiral?", "Cuttino Mobley", "David Robinson", "Kevin Garnett", "Dirk Nowitzki"]
   var questionBank2 = ["What is the highest number of points ever scored by a single player in an NBA game?", "110", "94", "81", "100"]
   var questionBank3 = ["What country is Dallas Mavericks star Luka Doncic from?", "Lithuania", "Croatia", "Slovenia", "Poland"]
@@ -41,6 +39,9 @@
   var questionBank8 = ["Who was the MVP of the 2008 NBA Finals?", "Paul Pierce", "Kevin Garnett", "Kobe Bryant", "Ray Allen"]
   var questionBank9 = ["Who was the first high school player to go straight from high school to the NBA and be drafted first overall?", "LeBron James", "Anthony Davis", "Chris Webber", "Kwame Brown"]
   var questionBank10 = ["What university did former NBA star Allen Iverson attend?", "Duke", "USC", "Georgetown", "UCONN"]
+  var questionList = [questionBank1, questionBank2, questionBank3, questionBank4, questionBank5, questionBank6, questionBank7, questionBank8, questionBank9, questionBank10]
+  var questionCorrect = [questionBank1[2], questionBank2[4], questionBank3[4], questionBank4[2], questionBank5[4], questionBank6[2], questionBank7[3], questionBank8[2], questionBank9[4], questionBank10[3]]
+  
 //     question: "What famous NBA player went by the name, The Admiral?",
 //     answers: [
 //       {text: "David Robinson", correct: true},
@@ -59,8 +60,8 @@ var randomQuestion="";
 // "Paul Pierce", "Kobe Bryant", "Kevin Garnett", "Ray Allen", 
 // "Kwame Brown", "LeBron James", "Chris Webber", "Anthony Davis", 
 // "Georgetown", "Duke", "USC", "UCONN"]
-console.log(answerBank.indexOf("David Robinson"));
-console.log(answerBank.indexOf("Kobe Bryant"));
+console.log(questionBank1.indexOf("David Robinson"));
+console.log(questionBank2.indexOf("Kobe Bryant"));
 var questionBox = document.getElementById ('questionTitle')
 var startBtn = document.getElementById("go");
 var resetBtn = document.querySelector("reset");
@@ -92,17 +93,24 @@ startBtn.addEventListener("click", function (){
   randomQuestion = questionList[Math.floor(Math.random()*questionList.length)]
   console.log(questionList.length);
   console.log(randomQuestion);
+    for (i=0; i < questionList.length; i++)
+    questionBox.textContent = questionList [i][0];
+    answerA.textContent = [i][i];
+    answerB.textContent = [i][1];
+    answerC.textContent = [i][2];
+    answerD.textContent = [i][3];
+
   //nice! randomizer is working and selecting a random question from the question bank. 
   //TODO: display an initial random question upon game commencement. 
-  questionBox.textContent = randomQuestion;
+  //questionBox.textContent = randomQuestion;
   
 }
 )
 
-answerA.addEventListener("click", playerAnswer);
-answerB.addEventListener("click", playerAnswer);
-answerC.addEventListener("click", playerAnswer);
-answerD.addEventListener("click", playerAnswer);
+// answerA.addEventListener("click", playerAnswer);
+// answerB.addEventListener("click", playerAnswer);
+// answerC.addEventListener("click", playerAnswer);
+// answerD.addEventListener("click", playerAnswer);
 
 function countdown() {
   var timeLeft = 150;
