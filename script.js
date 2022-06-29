@@ -103,27 +103,27 @@ startBtn.addEventListener("click", function startGame(){
   questionNumber = 0;
   console.log(questionList.length);
   console.log(randomQuestion);
-  //nextQuestion();
     questionBox.textContent = questionList[randomQuestionIndex][0];
     answerA.textContent = questionList[randomQuestionIndex][1];
     answerB.textContent = questionList[randomQuestionIndex][2];
     answerC.textContent = questionList[randomQuestionIndex][3];
     answerD.textContent = questionList[randomQuestionIndex][4];
-
+    //nextQuestion();
   //nice! randomizer is working and selecting a random question from the question bank. 
   //TODO: display an initial random question upon game commencement. 
   //questionBox.textContent = randomQuestion;
   
 
-  resetBtn.addEventListener('click', startGame);                                                             
-  resetBtn.addEventListener('click',)                           
+  resetBtn.addEventListener('click', startGame);                                                                                      
   //this is funny; I got the reset button to work, but it's really only functioning as another start game button. how do i get it to reset the timer + score as well.
 }
 )
 
 /*
 function nextQuestion() {
-  continueQuestions(randomQuestionIndex[questionNumber])
+  var questionList = [Math.floor(Math.random()*questionList.length)]
+  continueQuestions(questionList[questionList])
+  console.log("question list being randomized");
 }
 
 function continueQuestions(questionList) {
@@ -163,6 +163,12 @@ answerD.addEventListener("click", function(event){
 });
 //trying to call a reset time function separately; getting confused whether i need to make timeLeft a global or local variable.
 
+function correctAnswer(){
+  if (answerA.innerText == questionBank1[0].questionBank1[2]){
+    score++;
+    console.log("it worked");
+  }
+}
 
 function countdown() {
   
