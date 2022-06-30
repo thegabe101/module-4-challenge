@@ -70,16 +70,17 @@ var startBtn = document.getElementById("go");
 //var resetBtn = document.querySelector("reset");
 var timeRemain = document.getElementById('timeRemaining');
 var currentQuestion = 0;
-var questionIndex = currentQuestion + 1;
+var questionIndex = 0;
 var answerA = document.getElementById ('option1');
 var answerB = document.getElementById ('option2');
 var answerC = document.getElementById ('option3');
 var answerD = document.getElementById ('option4');
 //this var would be to ensure that the user can't click start once the game has started, but isn't necessary because I hide the button upon start. 
-var gameStarted = false;
-var resetBtn = document.getElementById ('reset')
+var gameStarted = true;
+var resetBtn = document.getElementById ('reset');
 var prevButton=document.getElementById("prev");
 var nextButton=document.getElementById("next");
+var currentScore=document.getElementById("currentScore");
 //const goButton = document.getElementById('go');
 //confused about my start button. seems to need 2 separate variables but not sure why. 
 //startBtn.addEventListener('click', hideButton);
@@ -139,6 +140,9 @@ const possibleQuestions = [
   }
 ]
 
+function startGame() {
+
+
 
 // questionBox.innerHTML = '('+ questionIndex +')  '+possibleQuestions[currentQuestion].question;
 questionBox.innerHTML = possibleQuestions[currentQuestion].question;
@@ -148,8 +152,12 @@ nextButton.addEventListener("click", function nextQuestion(){
 console.log("next");
 if(currentQuestion<possibleQuestions.length -1){
 currentQuestion++;
-questionIndex=currentQuestion+1;
+questionIndex=questionIndex+1;
 questionBox.innerHTML = '('+ questionIndex +')  '+ possibleQuestions[currentQuestion].question;
+answerA.innerText = possibleQuestions[questionIndex].answers[0];
+answerB.innerText = possibleQuestions[questionIndex].answers[1];
+answerC.innerText = possibleQuestions[questionIndex].answers[2];
+answerD.innerText = possibleQuestions[questionIndex].answers[3];
 console.log("next");
 }
 })
@@ -159,44 +167,43 @@ prevButton.addEventListener("click", function prevQuestion(){
   currentQuestion--;
   questionIndex=questionIndex-1;
   questionBox.innerHTML = '('+ questionIndex +')  '+ possibleQuestions[currentQuestion].question;
+  answerA.innerText = possibleQuestions[questionIndex].answers[0];
+  answerB.innerText = possibleQuestions[questionIndex].answers[1];
+  answerC.innerText = possibleQuestions[questionIndex].answers[2];
+  answerD.innerText = possibleQuestions[questionIndex].answers[3];
   }
   
   
   })
+
+
+
+  startBtn.addEventListener("click", function countdown() {
   
+  var timeLeft = 150;
+  const timeInterval = setInterval(function () {
 
+    if (timeLeft > 1) {
 
+      timeRemain.textContent = timeLeft + ' seconds remaining';
 
+      timeLeft--;
+    } else if (timeLeft === 1) {
 
+      timeRemain.textContent = timeLeft + ' second remaining';
+      timeLeft--;
+    } else {
 
+      timeRemain.textContent = '';
 
+      clearInterval(timeInterval);
+      displayMessage();
+    }
+  }, 1000);   
+})
+}
 
-// function countdown() {
-  
-//   var timeLeft = 150;
-//   const timeInterval = setInterval(function () {
-
-//     if (timeLeft > 1) {
-
-//       timeRemain.textContent = timeLeft + ' seconds remaining';
-
-//       timeLeft--;
-//     } else if (timeLeft === 1) {
-
-//       timeRemain.textContent = timeLeft + ' second remaining';
-//       timeLeft--;
-//     } else {
-
-//       timeRemain.textContent = '';
-
-//       clearInterval(timeInterval);
-//       displayMessage();
-//     }
-//   }, 1000);   
-// }
-
-
-
+startGame();
 
 
 
