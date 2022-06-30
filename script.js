@@ -64,13 +64,19 @@
 console.log(questionBank1.indexOf("David Robinson"));
 console.log(questionBank2.indexOf("Kobe Bryant"));
 */
+
+
+// !!!!!!! TO GRADER: Please ignore everything above this line and below line _____. My apologies for the mess of code. This assignment took me numerous attempts and I wound up needing to redraw it several times and patch it together while commenting out my working parts v. unworking parts. I did not want to delete the bad code for future reference purposes. Thank you. 
+
 var questionBox = document.getElementById ('questionTitle')
 var startBtn = document.getElementById("go");
 //trouble getting the reset button to work. I wonder if I need to simply tie it to a start game function and use it as a pseudo start button?
 //var resetBtn = document.querySelector("reset");
 var timeRemain = document.getElementById('timeRemaining');
 var currentQuestion = 0;
-var questionIndex = 0;
+var questionIndex = -1;
+var playerScore= 0;
+var timeLeft = 150;
 var answerA = document.getElementById ('option1');
 var answerB = document.getElementById ('option2');
 var answerC = document.getElementById ('option3');
@@ -80,11 +86,19 @@ var gameStarted = true;
 var resetBtn = document.getElementById ('reset');
 var prevButton=document.getElementById("prev");
 var nextButton=document.getElementById("next");
-var currentScore=document.getElementById("currentScore");
+var highscores=document.getElementById("scores");
+var scoreSection=document.getElementById("highscorediv");
+// var playerScore=document.getElementById("currentScore");
 //const goButton = document.getElementById('go');
 //confused about my start button. seems to need 2 separate variables but not sure why. 
-//startBtn.addEventListener('click', hideButton);
+startBtn.addEventListener('click', startGame);
 //startBtn.addEventListener('click', countdown);
+
+function pageLoadInstructions () {
+   alert("Welcome to NBA Trivia! When you are ready to begin, please click 'Check Ball!' to start the timer. You will have 150 seconds to complete the game. To continue to the next question click 'Next Question', and to return to a previous question click 'Previous Question.' Upon completion of the game, you will see your score.");
+}
+
+pageLoadInstructions();
 
 
 const possibleQuestions = [
@@ -115,7 +129,7 @@ const possibleQuestions = [
   },
   {
     question: 'Who is the only player in NBA history to have three sons play in the league?',
-    answers: ["Rick Barry", "LaMar Ball", "LeBron James", "Gary Payton"],
+    answers: ["Rick Barry", "LaVar Ball", "LeBron James", "Gary Payton"],
     correct: 'Rick Barry'
   },
   {
@@ -140,70 +154,165 @@ const possibleQuestions = [
   }
 ]
 
-function startGame() {
+var timeLeft = 150;
+function startGame() {  
+  timeLeft = 150
+  startBtn.addEventListener("click", function countdown() {
+    startBtn.classList.add('hide')
+    questionBox.classList.remove('hide')
+    window.timeInterval = setInterval(function () {
+
+      if (timeLeft > 1) {
+
+        timeRemain.textContent = timeLeft + ' seconds remaining';
+
+        timeLeft--;
+      } else if (timeLeft === 1) {
+
+        timeRemain.textContent = timeLeft + ' second remaining';
+        timeLeft--;
+      } else {
+
+        timeRemain.textContent = '';
+
+        clearInterval(timeInterval);
+      }
+  }, 1000);
+  continueQuestions()
+})
 
 
 
-// questionBox.innerHTML = '('+ questionIndex +')  '+possibleQuestions[currentQuestion].question;
-questionBox.innerHTML = possibleQuestions[currentQuestion].question;
-console.log("current question");
+//questionBox.innerHTML = '('+ questionIndex +')  '+possibleQuestions[currentQuestion].question;
+
 
 nextButton.addEventListener("click", function nextQuestion(){
-console.log("next");
-if(currentQuestion<possibleQuestions.length -1){
-currentQuestion++;
-questionIndex=questionIndex+1;
-questionBox.innerHTML = '('+ questionIndex +')  '+ possibleQuestions[currentQuestion].question;
-answerA.innerText = possibleQuestions[questionIndex].answers[0];
-answerB.innerText = possibleQuestions[questionIndex].answers[1];
-answerC.innerText = possibleQuestions[questionIndex].answers[2];
-answerD.innerText = possibleQuestions[questionIndex].answers[3];
-console.log("next");
+  console.log("next");
+  questionBox.innerHTML = possibleQuestions[currentQuestion].question;
+  console.log("current question");
+  if(currentQuestion<possibleQuestions.length -1){
+    currentQuestion++;
+    questionBox.innerHTML = '('+ questionIndex +')  '+ possibleQuestions[currentQuestion].question;
+    answerA.innerText = possibleQuestions[questionIndex].answers[0];
+    answerB.innerText = possibleQuestions[questionIndex].answers[1];
+    answerC.innerText = possibleQuestions[questionIndex].answers[2];
+    answerD.innerText = possibleQuestions[questionIndex].answers[3];
+    console.log("next");
 }
 })
 
 prevButton.addEventListener("click", function prevQuestion(){
+  console.log("previous");
   if(currentQuestion>0){
-  currentQuestion--;
-  questionIndex=questionIndex-1;
-  questionBox.innerHTML = '('+ questionIndex +')  '+ possibleQuestions[currentQuestion].question;
+    currentQuestion--;
+    questionBox.innerHTML = '('+ questionIndex +')  '+ possibleQuestions[currentQuestion].question;
+    answerA.innerText = possibleQuestions[questionIndex].answers[0];
+    answerB.innerText = possibleQuestions[questionIndex].answers[1];
+    answerC.innerText = possibleQuestions[questionIndex].answers[2];
+    answerD.innerText = possibleQuestions[questionIndex].answers[3];
+  }
+
+  
+  })
+}
+
+answerA.addEventListener('click', function() {
+  if (answerA.innerText === possibleQuestions[questionIndex].correct) {
+    console.log("located");
+    playerScore = playerScore +10;
+    continueQuestions()
+  } else {
+    console.log("does not match")
+    playerScore = playerScore -5;
+    console.log(playerScore);
+    timeLeft = timeLeft -5;
+    continueQuestions()
+  }
+})
+answerB.addEventListener('click', function() {
+  if (answerB.innerText === possibleQuestions[questionIndex].correct) {
+    console.log("located");
+    playerScore = playerScore +10
+    console.log(playerScore);
+    continueQuestions()
+  } else {
+    console.log("does not match")
+    playerScore = playerScore -5;
+    console.log(playerScore)
+    timeLeft = timeLeft -5;
+    continueQuestions()
+  }
+})
+answerC.addEventListener('click', function() {
+  if (answerC.innerText === possibleQuestions[questionIndex].correct) {
+    console.log("located");
+    playerScore = playerScore +10
+    console.log(playerScore);
+    continueQuestions()
+  } else {
+    console.log("does not match");
+    playerScore = playerScore -5;
+    console.log(playerScore);
+    timeLeft = timeLeft -5;
+    continueQuestions()
+  }
+})
+answerD.addEventListener('click', function() {
+  if (answerD.innerText === possibleQuestions[questionIndex].correct) {
+    console.log("located");
+    playerScore = playerScore +10;
+    console.log(playerScore)
+    continueQuestions()
+  } else {
+    console.log("does not match");
+    playerScore = playerScore -5;
+    console.log(playerScore);
+    timeLeft = timeLeft -5;
+    continueQuestions()
+  }
+})
+
+function continueQuestions () {
+  questionIndex++
+  if(questionIndex === possibleQuestions.length){
+    return showScore()
+  }
+  var currentQuestion = possibleQuestions[questionIndex].question
+  questionBox.innerText = currentQuestion;
+
   answerA.innerText = possibleQuestions[questionIndex].answers[0];
   answerB.innerText = possibleQuestions[questionIndex].answers[1];
   answerC.innerText = possibleQuestions[questionIndex].answers[2];
   answerD.innerText = possibleQuestions[questionIndex].answers[3];
+  // if currentQuestion = possibleQuestions[questionIndex].question[9];
+  // showScore();
+  console.log(questionIndex)
+}
+
+
+// this section broke my brain. i realized eventually that all scores were being recorded, not just "high" ones. i ran out of time without fixing this problem.
+function showScore () {
+  clearInterval(window.timeInterval)
+  document.querySelector(".mainContainer").classList.add("hide")
+  document.querySelector("#scoreBar").style = 'display: none;'
+  var userName = prompt('Please enter your initials')
+  localStorage.setItem(userName, playerScore)
+  scoreSection.style = "display: block; text-align: center; font-size: xx-large; color: blue"
+  for (let i = 0; i < localStorage.length; i++) {
+    let li = document.createElement('li')
+    console.log(localStorage.key(i))
+    highscores.appendChild(li)
+    li.textContent = localStorage.key(i) + ': ' + localStorage.getItem(localStorage.key(i))
   }
-  
-  
+}
+
+
+//this is a cheap way of doing this, but i wanted to get the functionality in there at the very minimum. 
+resetBtn.addEventListener('click', function (){
+  window.location.reload()
   })
 
 
-
-  startBtn.addEventListener("click", function countdown() {
-  
-  var timeLeft = 150;
-  const timeInterval = setInterval(function () {
-
-    if (timeLeft > 1) {
-
-      timeRemain.textContent = timeLeft + ' seconds remaining';
-
-      timeLeft--;
-    } else if (timeLeft === 1) {
-
-      timeRemain.textContent = timeLeft + ' second remaining';
-      timeLeft--;
-    } else {
-
-      timeRemain.textContent = '';
-
-      clearInterval(timeInterval);
-      displayMessage();
-    }
-  }, 1000);   
-})
-}
-
-startGame();
 
 
 
@@ -248,11 +357,7 @@ startGame();
 //   //questionBox.textContent = randomQuestion;
 
 // //attempted to create function to reset timer to 0 on reset button but will have to get back to this later. 
-// // resetBtn.addEventListener('click', function (){
-// //   currentScore=0;
-// //   clearInterval(timeInterval);
-// //   currentScore.textContent=0;
-// // })
+
 // //need to create span for current score somewhere in HTML
 
 
