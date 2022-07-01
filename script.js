@@ -75,7 +75,6 @@ var startBtn = document.getElementById("go");
 var timeRemain = document.getElementById('timeRemaining');
 var currentQuestion = 0;
 var questionIndex = -1;
-var playerScore= 0;
 var timeLeft = 150;
 var answerA = document.getElementById ('option1');
 var answerB = document.getElementById ('option2');
@@ -88,7 +87,7 @@ var prevButton=document.getElementById("prev");
 var nextButton=document.getElementById("next");
 var highscores=document.getElementById("scores");
 var scoreSection=document.getElementById("highscorediv");
-// var playerScore=document.getElementById("currentScore");
+var playerScore=document.getElementById("currentScore");
 //const goButton = document.getElementById('go');
 //confused about my start button. seems to need 2 separate variables but not sure why. 
 startBtn.addEventListener('click', startGame);
@@ -219,11 +218,11 @@ prevButton.addEventListener("click", function prevQuestion(){
 answerA.addEventListener('click', function() {
   if (answerA.innerText === possibleQuestions[questionIndex].correct) {
     console.log("located");
-    playerScore = playerScore +10;
+    playerScore.textContent = playerScore + 10;
     continueQuestions()
   } else {
     console.log("does not match")
-    playerScore = playerScore -5;
+    playerScore.textContent = playerScore -5;
     console.log(playerScore);
     timeLeft = timeLeft -5;
     continueQuestions()
@@ -232,12 +231,12 @@ answerA.addEventListener('click', function() {
 answerB.addEventListener('click', function() {
   if (answerB.innerText === possibleQuestions[questionIndex].correct) {
     console.log("located");
-    playerScore = playerScore +10
+    playerScore.textContent = playerScore + 10;
     console.log(playerScore);
     continueQuestions()
   } else {
     console.log("does not match")
-    playerScore = playerScore -5;
+    playerScore.textContent = playerScore -5;
     console.log(playerScore)
     timeLeft = timeLeft -5;
     continueQuestions()
@@ -246,12 +245,12 @@ answerB.addEventListener('click', function() {
 answerC.addEventListener('click', function() {
   if (answerC.innerText === possibleQuestions[questionIndex].correct) {
     console.log("located");
-    playerScore = playerScore +10
+    playerScore.textContent = playerScore + 10;
     console.log(playerScore);
     continueQuestions()
   } else {
     console.log("does not match");
-    playerScore = playerScore -5;
+    playerScore.textContent = playerScore -5;
     console.log(playerScore);
     timeLeft = timeLeft -5;
     continueQuestions()
@@ -260,12 +259,12 @@ answerC.addEventListener('click', function() {
 answerD.addEventListener('click', function() {
   if (answerD.innerText === possibleQuestions[questionIndex].correct) {
     console.log("located");
-    playerScore = playerScore +10;
+    playerScore.textContent = playerScore + 10;
     console.log(playerScore)
     continueQuestions()
   } else {
     console.log("does not match");
-    playerScore = playerScore -5;
+    playerScore.textContent = playerScore -5;
     console.log(playerScore);
     timeLeft = timeLeft -5;
     continueQuestions()
@@ -299,10 +298,10 @@ function showScore () {
   localStorage.setItem(userName, playerScore)
   scoreSection.style = "display: block; text-align: center; font-size: xx-large; color: blue"
   for (let i = 0; i < localStorage.length; i++) {
-    let li = document.createElement('li')
+    let list = document.createElement('ol')
     console.log(localStorage.key(i))
-    highscores.appendChild(li)
-    li.textContent = localStorage.key(i) + ': ' + localStorage.getItem(localStorage.key(i))
+    highscores.appendChild(list)
+    list.textContent = localStorage.key(i) + ': ' + localStorage.getItem(localStorage.key(i))
   }
 }
 

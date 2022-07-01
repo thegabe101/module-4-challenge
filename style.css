@@ -15,6 +15,12 @@ h1 {
 
 h2 {
     font-weight: lighter;
+    color: crimson;
+    border: 3px darkblue solid;
+    background-color: aliceblue;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-shadow: 2px 2px 2px 2px crimson;
 }
 
 .NBAbanner {
@@ -26,6 +32,8 @@ h2 {
     color: white;
     background-image: url(./images/basketball-rims-header.jpg);
     background-size: cover;
+    border: 2px crimson solid;
+    box-shadow: 3px 3px 3px 3px crimson;
 }
 
 /*#decor1 {
@@ -103,6 +111,7 @@ h2 {
     margin-top: 6vh;
     margin-left: 3vh;
     font-size: x-large;
+    margin-bottom: 35px;
 }
 
 #reset {
