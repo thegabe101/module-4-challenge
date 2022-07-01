@@ -95,7 +95,7 @@ startBtn.addEventListener('click', startGame);
 //startBtn.addEventListener('click', countdown);
 
 function pageLoadInstructions () {
-   alert("Welcome to NBA Trivia! When you are ready to begin, please click 'Check Ball!' to start the timer. You will have 150 seconds to complete the game. Correct answers are worth 10 points. You will lose 5 points for incorrect answers.");
+   alert("Welcome to NBA Trivia! When you are ready to begin, please click 'Check Ball!' to start the timer. You will have 150 seconds to complete the game. Correct answers are worth 10 points. You will lose 5 points for incorrect answers. A perfect score is 100. Good luck!");
 }
 
 pageLoadInstructions();
