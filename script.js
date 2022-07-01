@@ -88,13 +88,14 @@ var nextButton=document.getElementById("next");
 var highscores=document.getElementById("scores");
 var scoreSection=document.getElementById("highscorediv");
 var playerScore=document.getElementById("currentScore");
+var playerPoints = 0;
 //const goButton = document.getElementById('go');
 //confused about my start button. seems to need 2 separate variables but not sure why. 
 startBtn.addEventListener('click', startGame);
 //startBtn.addEventListener('click', countdown);
 
 function pageLoadInstructions () {
-   alert("Welcome to NBA Trivia! When you are ready to begin, please click 'Check Ball!' to start the timer. You will have 150 seconds to complete the game. To continue to the next question click 'Next Question', and to return to a previous question click 'Previous Question.' Upon completion of the game, you will see your score.");
+   alert("Welcome to NBA Trivia! When you are ready to begin, please click 'Check Ball!' to start the timer. You will have 150 seconds to complete the game. Correct answers are worth 10 points. You will lose 5 points for incorrect answers.");
 }
 
 pageLoadInstructions();
@@ -160,7 +161,9 @@ function startGame() {
     startBtn.classList.add('hide')
     questionBox.classList.remove('hide')
     window.timeInterval = setInterval(function () {
-
+      if (timeLeft === 0){
+        showScore();
+      }
       if (timeLeft > 1) {
 
         timeRemain.textContent = timeLeft + ' seconds remaining';
@@ -218,11 +221,13 @@ prevButton.addEventListener("click", function prevQuestion(){
 answerA.addEventListener('click', function() {
   if (answerA.innerText === possibleQuestions[questionIndex].correct) {
     console.log("located");
-    playerScore.textContent = playerScore + 10;
+    playerPoints += 10;
+    playerScore.textContent = playerPoints;
     continueQuestions()
   } else {
     console.log("does not match")
-    playerScore.textContent = playerScore -5;
+    playerPoints -= 5;
+    playerScore.textContent = playerPoints;
     console.log(playerScore);
     timeLeft = timeLeft -5;
     continueQuestions()
@@ -231,12 +236,14 @@ answerA.addEventListener('click', function() {
 answerB.addEventListener('click', function() {
   if (answerB.innerText === possibleQuestions[questionIndex].correct) {
     console.log("located");
-    playerScore.textContent = playerScore + 10;
+    playerPoints += 10;
+    playerScore.textContent = playerPoints;
     console.log(playerScore);
     continueQuestions()
   } else {
     console.log("does not match")
-    playerScore.textContent = playerScore -5;
+    playerPoints -= 5;
+    playerScore.textContent = playerPoints;
     console.log(playerScore)
     timeLeft = timeLeft -5;
     continueQuestions()
@@ -245,12 +252,14 @@ answerB.addEventListener('click', function() {
 answerC.addEventListener('click', function() {
   if (answerC.innerText === possibleQuestions[questionIndex].correct) {
     console.log("located");
-    playerScore.textContent = playerScore + 10;
+    playerPoints += 10;
+    playerScore.textContent = playerPoints;
     console.log(playerScore);
     continueQuestions()
   } else {
     console.log("does not match");
-    playerScore.textContent = playerScore -5;
+    playerPoints -= 5;
+    playerScore.textContent = playerPoints;
     console.log(playerScore);
     timeLeft = timeLeft -5;
     continueQuestions()
@@ -259,12 +268,14 @@ answerC.addEventListener('click', function() {
 answerD.addEventListener('click', function() {
   if (answerD.innerText === possibleQuestions[questionIndex].correct) {
     console.log("located");
-    playerScore.textContent = playerScore + 10;
+    playerPoints += 10;
+    playerScore.textContent = playerPoints;
     console.log(playerScore)
     continueQuestions()
   } else {
     console.log("does not match");
-    playerScore.textContent = playerScore -5;
+    playerPoints -= 5;
+    playerScore.textContent = playerPoints;
     console.log(playerScore);
     timeLeft = timeLeft -5;
     continueQuestions()
@@ -295,7 +306,7 @@ function showScore () {
   document.querySelector(".mainContainer").classList.add("hide")
   document.querySelector("#scoreBar").style = 'display: none;'
   var userName = prompt('Please enter your initials')
-  localStorage.setItem(userName, playerScore)
+  localStorage.setItem(userName, playerPoints)
   scoreSection.style = "display: block; text-align: center; font-size: xx-large; color: blue"
   for (let i = 0; i < localStorage.length; i++) {
     let list = document.createElement('ol')

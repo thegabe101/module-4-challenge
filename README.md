@@ -41,6 +41,6 @@ This project involved creating a trivia game in which the player guessed questio
 
 ## Screenshots
 
-- ![Alt= Screenshot showing landing page](Screenshot%201.jpg)
-- ![Alt= Screenshot showing prompts that pop up](Screenshot%202.jpg)
-- ![Alt= Screenshot showing a generated password](Screenshot%203.jpg)
+- ![Alt= Screenshot showing initial prompt](/module-4-challenge/images/screenshot1.jpg)
+- ![Alt= Screenshot showing gameboard](/module-4-challenge/images/screenshot2.jpg)
+- ![Alt= Screenshot showing a score page](/module-4-challenge/images/screenshot3.jpg)
