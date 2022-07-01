@@ -6,6 +6,7 @@
 - [Installation](#installation)
 - [Credits](#credits)
 - [Usage](#usage)
+- [Bugs](#bugs)
 - [Screenshots](#screenshots)
 
 ## Description
@@ -28,6 +29,15 @@ This project involved creating a trivia game in which the player guessed questio
 ## Usage
 
 -Using this website is straightforward. Once the page loads, the user clicks the "Check Ball!" button, and the timer and first question of the quiz appears. The user may click on the next or previous question buttons in order to cycle through questions, and their answers will be recorded. An incorrect answer will subtract 5 seconds from the timer. Upon completion of the quiz, the user will receive their score.
+
+## Bugs
+
+-There are numerous known bugs in this trivia game.
+
+-Issue displaying score list (post-game) in an orderly manner. Seems to be an issue with styling a previously hidden element.
+-Next and previous buttons are buggy and should not be used. Was unsure how to properly program a user input on a skipped-to-behind question in accordance with score and time remaining. Furthermore, could not make logic properly go +1 or -1 on questions using the next and previous buttons. Currently, the buttons skip questions by 2s.
+-The restart button is programmed to page reload. This is not a "true" function and more of a shortcut.
+-Issues with page alignment in CSS once game is begun.
 
 ## Screenshots
 
